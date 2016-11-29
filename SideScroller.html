@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <title>SideScroller</title>
+    <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
+    <script type="text/processing" data-processing-target="mycanvas">
+        // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
+        
+        // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
+        
+        HorizontalLine slowLine = new HorizontalLine(20, 2.0); 
+        
+        HorizontalLine fastLine = new HorizontalLine(50, 2.5);
+        
+        Fish randomFish = new Fish(200, 100);
+        
+        ArrayList<Fish> fishList = new ArrayList<Fish>();  
+        
+        int WINDOW_WIDTH = 600;
+        int WINDOW_HEIGHT = 600;
+        
+        int REFRESH_RATE_PER_SECOND = 30;
+        int GREY = 204;
+        //runs once at the start of the program 
+        void setup() 
+        {
+        
+          size(WINDOW_WIDTH, WINDOW_HEIGHT);
+        
+          frameRate(REFRESH_RATE_PER_SECOND);//how often per second the draw function is called 
+          
+          var numberOfFish = random(3,10);
+          
+          for(var i = 0; i < numberOfFish; i++) {
+            fishList.add(new Fish(50,100));
+          }
+        
+        }
+        
+        
+        //called repeatedly 
+        void draw() { 
+        
+          background(GREY);
+        
+          slowLine.updateAndRedraw(); 
+        
+          fastLine.updateAndRedraw();  
+          
+          randomFish.drawFish();
+          
+          for(var i = 0; i < fishList.size(); i++){
+            Fish currentFish = fishList.get(i);
+            currentFish.drawFish();
+          }
+        
+        } 
+        
+         
+        
+        class HorizontalLine { 
+          
+          //attributes
+          float ypos, speed; 
+        
+          //constructor 
+          HorizontalLine (float y, float s) {  
+        
+            ypos = y; 
+        
+            speed = s; 
+        
+          } 
+          
+          void updateAndRedraw() {
+            update();
+            drawLine();
+          }
+          
+          void update() 
+          { 
+        
+            ypos += speed; 
+        
+            if (ypos > height) 
+            { 
+        
+              ypos = 0; 
+        
+            } 
+        
+        
+          } 
+          
+          void drawLine() 
+          {
+             line(0, ypos, width, ypos); 
+      }
+        
+        }
+        
+        class Building 
+        {
+          //attributes 
+          var centerX, centerY, buildingHeight, buildingLength, buildingColor;
+          
+          //constructor 
+          Building(var bh, var bl)
+          {
+            //attributes on the left, parameters on the right
+            buildingHeight = bh;
+            buildingLength = bl; 
+            buildingColor = color(255, 0, 0); 
+            centerX = random(100, 400);
+            centerY = random(100, 400); 
+            
+          }
+          
+          void drawBuilding()
+          {
+            fill(buildingColor);
+            rect(0, height*0.90, width, height*0.10);
+          
+          }
+        
+        }
+        </script> 
+    </head>
+    
+    <body>
+    <canvas id="mycanvas"></canvas>
+  </body>
+</html>
+    
