@@ -11,9 +11,13 @@
         
         HorizontalLine fastLine = new HorizontalLine(50, 2.5);
         
-        Fish randomFish = new Fish(200, 100);
+        Building randomBuilding = new Building(200, 100);
+
+        Building buildingWidthNoParameters = new Building(); 
+
+        Building buildingHeightNoParameters = new Building(); 
         
-        ArrayList<Fish> fishList = new ArrayList<Fish>();  
+        ArrayList<Building> buildingList = new ArrayList<Building>();  
         
         int WINDOW_WIDTH = 600;
         int WINDOW_HEIGHT = 600;
@@ -28,11 +32,6 @@
         
           frameRate(REFRESH_RATE_PER_SECOND);//how often per second the draw function is called 
           
-          var numberOfFish = random(3,10);
-          
-          for(var i = 0; i < numberOfFish; i++) {
-            fishList.add(new Fish(50,100));
-          }
         
         }
         
@@ -40,18 +39,16 @@
         //called repeatedly 
         void draw() { 
         
-          background(GREY);
+          background(23, 27, 28);
         
           slowLine.updateAndRedraw(); 
         
           fastLine.updateAndRedraw();  
           
-          randomFish.drawFish();
+          randomBuilding.drawBuilding();
+
+          randomBuilding.move();
           
-          for(var i = 0; i < fishList.size(); i++){
-            Fish currentFish = fishList.get(i);
-            currentFish.drawFish();
-          }
         
         } 
         
@@ -101,26 +98,32 @@
         class Building 
         {
           //attributes 
-          var centerX, centerY, buildingHeight, buildingLength, buildingColor;
+          var centerX, centerY, buildingHeight, buildingWidth, buildingColor;
           
           //constructor 
-          Building(var bh, var bl)
+          Building(var bh, var bw)
           {
             //attributes on the left, parameters on the right
             buildingHeight = bh;
-            buildingLength = bl; 
-            buildingColor = color(255, 0, 0); 
-            centerX = random(100, 400);
-            centerY = random(100, 400); 
+            buildingWidth = bw; 
+            buildingColor = color(187, 195, 199); 
+            centerX = 10;
+            centerY = 380; 
             
           }
           
           void drawBuilding()
           {
+            noStroke();
             fill(buildingColor);
-            rect(0, height*0.90, width, height*0.10);
+            rect(centerX, centerY, buildingWidth, buildingHeight);
           
           }
+
+          void move()
+            {
+              centerX = centerX + 2;
+            }
         
         }
         </script> 
