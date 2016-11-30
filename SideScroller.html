@@ -48,6 +48,13 @@
           randomBuilding.drawBuilding();
 
           randomBuilding.move();
+
+          noStroke(); //so you won't see the second ellipse's stroke
+          fill(255, 233, 33);//moon-like color
+          ellipse(200, 100, 200, 200);//the moon
+          fill(23, 27, 28);//same color as the night
+          ellipse(280, 100, 120, 120);//circle that covers the first ellipse to make a crescent shape
+
           
         
         } 
@@ -104,24 +111,32 @@
           Building()
           {
             //attributes on the left, parameters on the right
-            buildingHeight = random(300,500);
+            buildingHeight = random(200,300);
             buildingWidth = random(50,100); 
             buildingColor = color(187, 195, 199); 
             centerX = 10;
-            centerY = 580 - buildingHeight; 
+            centerY = random(500,580) - buildingHeight; 
             center2X = 10;
             center2Y = 580 - buildingHeight;
+            center3X = 10;
+            center3Y = 490 - buildingHeight;
             
           }
           
           void drawBuilding()
-          {
+          {  
             noStroke();
+            fill(120,120,120);
+            rect(center3X, center3Y, buildingWidth + 50, buildingHeight);
+          
             fill(80,80,80);
             rect(center2X, center2Y, buildingWidth, buildingHeight);
 
             fill(buildingColor);
-            rect(centerX, centerY+100, buildingWidth + 10, buildingHeight - 20);
+            rect(centerX, centerY + 100, buildingWidth + 10, buildingHeight - 20);
+
+            
+
             
       
           }
