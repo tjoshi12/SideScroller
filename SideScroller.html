@@ -11,7 +11,7 @@
         
         HorizontalLine fastLine = new HorizontalLine(50, 2.5);
         
-        Building randomBuilding = new Building(200, 100);
+        Building randomBuilding = new Building();
 
         Building buildingWidthNoParameters = new Building(); 
 
@@ -47,7 +47,7 @@
           
           randomBuilding.drawBuilding();
 
-          randomBuilding.move();
+          //randomBuilding.move();
           
         
         } 
@@ -101,14 +101,14 @@
           var centerX, centerY, buildingHeight, buildingWidth, buildingColor;
           
           //constructor 
-          Building(var bh, var bw)
+          Building()
           {
             //attributes on the left, parameters on the right
-            buildingHeight = bh;
-            buildingWidth = bw; 
+            buildingHeight = random(100,120);
+            buildingWidth = random(50,100); 
             buildingColor = color(187, 195, 199); 
             centerX = 10;
-            centerY = 380; 
+            centerY = 600 - buildingHeight; 
             
           }
           
@@ -117,7 +117,9 @@
             noStroke();
             fill(buildingColor);
             rect(centerX, centerY, buildingWidth, buildingHeight);
-          
+            fill(80,80,80);
+            rect(centerX + 110, centerY, buildingWidth - 20, buildingHeight + 200);
+      
           }
 
           void move()
