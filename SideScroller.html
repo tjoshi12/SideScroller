@@ -47,7 +47,7 @@
           
           randomBuilding.drawBuilding();
 
-          //randomBuilding.move();
+          randomBuilding.move();
           
         
         } 
@@ -98,33 +98,38 @@
         class Building 
         {
           //attributes 
-          var centerX, centerY, buildingHeight, buildingWidth, buildingColor;
+          var centerX, centerY, buildingHeight, buildingWidth, buildingColor, center2X, center2Y;
           
           //constructor 
           Building()
           {
             //attributes on the left, parameters on the right
-            buildingHeight = random(100,120);
+            buildingHeight = random(300,500);
             buildingWidth = random(50,100); 
             buildingColor = color(187, 195, 199); 
             centerX = 10;
-            centerY = 600 - buildingHeight; 
+            centerY = 580 - buildingHeight; 
+            center2X = 10;
+            center2Y = 580 - buildingHeight;
             
           }
           
           void drawBuilding()
           {
             noStroke();
-            fill(buildingColor);
-            rect(centerX, centerY, buildingWidth, buildingHeight);
             fill(80,80,80);
-            rect(centerX + 110, centerY, buildingWidth - 20, buildingHeight + 200);
+            rect(center2X, center2Y, buildingWidth, buildingHeight);
+
+            fill(buildingColor);
+            rect(centerX, centerY+100, buildingWidth + 10, buildingHeight - 20);
+            
       
           }
 
           void move()
             {
-              centerX = centerX + 2;
+              //centerX = centerX + 2;
+              //center2X = center2X + 4;
             }
         
         }
