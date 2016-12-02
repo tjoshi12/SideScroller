@@ -8,10 +8,7 @@
         
         // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
         
-        HorizontalLine slowLine = new HorizontalLine(20, 2.0); 
-        
-        HorizontalLine fastLine = new HorizontalLine(50, 2.5);
-        
+       
         Building randomBuilding = new Building();
 
         Building buildingWidthNoParameters = new Building(); 
@@ -33,7 +30,9 @@
         
           frameRate(REFRESH_RATE_PER_SECOND);//how often per second the draw function is called 
           
-        
+        buildingList = new ArrayList<Bulding>(); //guarantees the only thing in the arrayList is Fish 
+
+   
         }
         
         
@@ -62,7 +61,7 @@
          { 
           
           //attributes
-          ArrayList<Building> buildingList;
+          ArrayList<Building>buildingList;
               var xPos;
           
           //constructor
@@ -75,7 +74,15 @@
           
           void drawSkyline() //loop through Array List and draw each building
           {
-            void addBuilding(){
+            for(var i = 0; i < buildingList.size(); i++) {
+  Building currentBuilding = buildingList.get(i); 
+  currentBuilding.drawBuilding();
+            }
+          
+
+            void addBuilding()
+
+            {
             var currentBuildingwidth = random(10,80);
             Building currentBuilding = new Building(xPos, currentBuildingwidth);
             buildingList.add(currentBuildingwidth);
@@ -88,9 +95,9 @@
         class Building 
         {
           //attributes 
-          var xPos, centerY, buildingHeight, buildingWidth, buildingColor);
+          var xPos, centerY, buildingHeight, buildingWidth, buildingColor, currentBuildingwidth);
           //constructor 
-          Building(xPos, currentBuildingwidth)
+          Building(var xPos,var currentBuildingwidth)
           {
             //attributes on the left, parameters on the right
             buildingHeight = random(200,300);
