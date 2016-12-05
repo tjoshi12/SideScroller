@@ -6,11 +6,7 @@
     <script type="text/processing" data-processing-target="mycanvas">
         // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
         
-        // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
-        
-        HorizontalLine slowLine = new HorizontalLine(20, 2.0); 
-        
-        HorizontalLine fastLine = new HorizontalLine(50, 2.5);
+        // Declare and contruct two objects (h1, h2) from the class HorizontalLine
         
         Building randomBuilding = new Building();
 
@@ -58,16 +54,13 @@
         
          
         
-        class Skyline
-         { 
-          
-          //attributes
-          ArrayList<Building> buildingList;
-              var xPos;
+        class Skyline {
+        ArrayList<Building> buildingList;
+         var xPosition;
           
           //constructor
           Skyline(){
-            buildingList = newArrayList<Building>()
+            buildingList = new ArrayList<Building>()
             xPos = 0;
           }  
              
@@ -75,6 +68,10 @@
           
           void drawSkyline() //loop through Array List and draw each building
           {
+            for(var i = 0; i < buildingList.size(); i++) {
+           Building currentBuilding = buildingList.get(i); 
+              
+          }
             void addBuilding(){
             var currentBuildingwidth = random(10,80);
             Building currentBuilding = new Building(xPos, currentBuildingwidth);
@@ -88,16 +85,16 @@
         class Building 
         {
           //attributes 
-          var xPos, centerY, buildingHeight, buildingWidth, buildingColor);
+          var xPos, yPos, buildingHeight, buildingWidth, buildingColor, currentBuildingwidth);
           //constructor 
-          Building(xPos, currentBuildingwidth)
+          Building(var xPos, var currentBuildingwidth)
           {
             //attributes on the left, parameters on the right
             buildingHeight = random(200,300);
             buildingWidth = random(50,100); 
             buildingColor = color(187, 195, 199); 
             xPos = 10;
-            centerY = random(500,580) - buildingHeight; 
+            yPos = random(500,580) - buildingHeight; 
             
           }
           
@@ -105,7 +102,7 @@
           {  
             noStroke();
             fill(buildingColor);
-            rect(xPos, centerY + 100, buildingWidth + 10, buildingHeight - 20);
+            rect(xPos, yPos + 100, buildingWidth + 10, buildingHeight - 20);
 
             
 
