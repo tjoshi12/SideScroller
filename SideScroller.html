@@ -9,28 +9,17 @@
         // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
         
        
-        Building randomBuilding = new Building();
-
-        Building buildingWidthNoParameters = new Building(); 
-
-        Building buildingHeightNoParameters = new Building(); 
+       Building testBuilding = new Building(0, random(30,100)); 
         
-        ArrayList<Building> buildingList = new ArrayList<Building>();  
         
-        int WINDOW_WIDTH = 600;
-        int WINDOW_HEIGHT = 600;
-        
-        int REFRESH_RATE_PER_SECOND = 30;
-        int GREY = 204;
+        var WINDOW_WIDTH = screen.width;
+        var WINDOW_HEIGHT = 400; 
+        var GREY = 204;
         //runs once at the start of the program 
-        void setup() 
-        {
+        void setup() {
+        size(WINDOW_WIDTH, WINDOW_HEIGHT);
         
-          size(WINDOW_WIDTH, WINDOW_HEIGHT);
-        
-          frameRate(REFRESH_RATE_PER_SECOND);//how often per second the draw function is called 
-          
-        buildingList = new ArrayList<Bulding>(); //guarantees the only thing in the arrayList is Fish 
+         testBuilding.drawAndUpdate();
 
    
         }
@@ -41,9 +30,9 @@
         
           background(23, 27, 28); 
           
-          randomBuilding.drawBuilding();
+          testBuilding.drawAndUpdate();
 
-          randomBuilding.move();
+         
 
           noStroke(); //so you won't see the second ellipse's stroke
           fill(255, 233, 33);//moon-like color
@@ -66,12 +55,15 @@
           
           //constructor
           Skyline(){
-            buildingList = newArrayList<Building>()
+            buildingList = new ArrayList<Building>()
             xPos = 0;
+            fillSkyline();
           }  
              
   
-          
+          void moveSkyline(){
+            xPos = xPos +1
+          }
           void drawSkyline() //loop through Array List and draw each building
           {
             for(var i = 0; i < buildingList.size(); i++) {
@@ -79,15 +71,23 @@
   currentBuilding.drawBuilding();
             }
           
+            void update(){
+            for(var i = 0; i< buildingList.size(); i++) { 
+              Building currentBuilding = buildingList.get(i);
+             currentBuilding.update();
+           }
 
+           }
             void addBuilding()
 
             {
             var currentBuildingwidth = random(10,80);
-            Building currentBuilding = new Building(xPos, currentBuildingwidth);
-            buildingList.add(currentBuildingwidth);
-            xPos += currentBuildingwidth;
-          }
+            Building currentBuilding = new Building(xPos, randomBuildingwidth);
+            BuildingList.add(currentBuilding);
+            xPos += randomBuildingwidth;
+            }
+            void fillSkyline();
+          
       }
         
         }
@@ -107,24 +107,27 @@
             centerY = random(500,580) - buildingHeight; 
             
           }
-          
+          void drawAndUpdate(){
+          var testSpeed = 5;
+          drawBuilding();
+          update(testSpeed);
+          }
           void drawBuilding()
           {  
             noStroke();
             fill(buildingColor);
             rect(xPos, centerY + 100, buildingWidth + 10, buildingHeight - 20);
-
-            
+            }
+            void update(var speed){
+              xPos += speed;
+            }
 
             
       
-          }
+          
 
-          void move()
-            {
-              //centerX = centerX + 2;
-              //center2X = center2X + 4;
-            }
+         
+            
         
         }
         </script> 
