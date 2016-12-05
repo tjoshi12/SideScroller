@@ -31,7 +31,7 @@
           
           testBuilding.drawAndUpdate();
 
-         
+        }
 
           noStroke(); //so you won't see the second ellipse's stroke
           fill(255, 233, 33);//moon-like color
@@ -41,7 +41,7 @@
 
           
         
-        } 
+         
         
          
         
@@ -66,29 +66,30 @@
           void drawSkyline() //loop through Array List and draw each building
           {
             for(var i = 0; i < buildingList.size(); i++) {
-  Building currentBuilding = buildingList.get(i); 
-  currentBuilding.drawBuilding();
+              Building currentBuilding = buildingList.get(i); 
+              currentBuilding.drawBuilding();
             }
-          
-            void update(){
+          }
+          void update(){
             for(var i = 0; i< buildingList.size(); i++) { 
               Building currentBuilding = buildingList.get(i);
-             currentBuilding.update();
+              currentBuilding.update();
+              var speed = 5
            }
 
            }
-            void addBuilding()
-
+          void addBuilding()
             {
-            var currentBuildingwidth = random(10,80);
+            var randomBuildingwidth = random(10,80);
             Building currentBuilding = new Building(xPos, randomBuildingwidth);
             BuildingList.add(currentBuilding);
             xPos += randomBuildingwidth;
             }
-            void fillSkyline();
-          
-      }
-        
+          void fillSkyline();
+          {
+
+
+          }
         }
         
         class Building 
@@ -107,9 +108,9 @@
             
           }
           void drawAndUpdate(){
-          var testSpeed = 5;
-          drawBuilding();
-          update(testSpeed);
+            var testSpeed = 5;
+            drawBuilding();
+            update(testSpeed);
           }
           void drawBuilding()
           {  
@@ -117,17 +118,12 @@
             fill(buildingColor);
             rect(xPos, centerY + 100, buildingWidth + 10, buildingHeight - 20);
             }
-            void update(var speed){
+            
+          void update(var speed){
               xPos += speed;
-            }
-
-            
-      
-          
-
-         
-            
         
+        }
+
         }
         </script> 
     </head>
