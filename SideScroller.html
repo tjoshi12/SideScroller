@@ -1,102 +1,103 @@
 <html>
   <head>
-    <title>SideScroller</title>
+    <title>City Scroller</title>
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
-        // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
-        
-        // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
-        
-       
-       // Building testBuilding = new Building(0, random(120, 180)); 
-        
+    
+    Building testBuilding = new Building(0, random(30,100));          
+    //TODO: Create an instance of your Skyline object 
+        Skyline testSkyline = new Skyline();
+        //since these are variables we don't want to ever change in the code, we capitalize them 
         var WINDOW_WIDTH = 1100;
-        var WINDOW_HEIGHT = 650; 
-
-        var buildingList = new ArrayList<Skyline>();
-
-        var buildingXPosition;
-        var previousBuildingXPosition;
-        var buildingWidthh;
-
+        var WINDOW_HEIGHT = 400; 
         var GREY = 204;
+    
+        //This function only runs once at the start of the program
+        void setup() {
+          size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
+          frameRate(30); //how many times the draw function is called per second
+        }
+        
+        //called repeatedly
+        void draw() { 
+          background(0); //needed in the draw function to "clear" the screen between updates
+        testBuilding.drawAndUpdate();
+        //TODO: Call drawSkyline on your Skyline object
+        testSkyline.drawSkyline();
+        } 
 
-        void createTheList() {
+
+    class Skyline {
+      ArrayList<Building> buildingList;
+      var xPosition;
+      
+      Skyline(){
+        buildingList = new ArrayList<Building>();
+        xPosition = 0;
+        fillSkyline();//when a Skyline is created it automatically has enough buildings to fill the screen
+      }
+      
+      void moveSkyline(){
+        //TODO:update and draw the skyline, add buildings as buildings leave the screen
+        xPosition = xPosition + 2
+      }
+
+      void drawSkyline() {
+        println(buildingList.size());
             for(var i = 0; i < buildingList.size(); i++) {
             Building currentBuilding = buildingList.get(i);
-            currentBuilding.drawAndUpdate();
+            currentBuilding.drawBuilding();
           }
         }
+      void update(){
+        //TODO:loop through buildingList and update each Building
+        for(var i = 0; i < buildingList.size(); i++) {
+              Building currentBuilding = buildingList.get(i); 
+                currentBuilding.update();
+      }
+    }
+      void buildTheBuildings() {
+              buildingWidthh = random(120, 180);
+              buildingXPosition = previousBuildingXPosition - buildingWidthh;
+              buildingList.add(new Building(buildingXPosition, buildingWidthh));
+              previousBuildingXPosition = buildingXPosition;
+          }
 
-        void buildTheBuildings() {
-          buildingWidthh = random(120, 180);
-          buildingXPosition = previousBuildingXPosition - buildingWidthh;
-          buildingList.add(new Building(buildingXPosition, buildingWidthh));
-          previousBuildingXPosition = buildingXPosition;
-        }
-
-
-        //runs once at the start of the program 
-        void setup() {
-
+      void fillSkyline(){
+        //TODO:add enough buildings to fill the screen
         numberOfBuildings = 16;
-        previousBuildingXPosition = 1100;
-        for(var i = 0; i < numberOfBuildings; i++) {
-          buildTheBuildings();
-        }
-
-        size(WINDOW_WIDTH, WINDOW_HEIGHT);
-        
-         // testBuilding.drawAndUpdate();
-
-   
-        }
-        
-        
-        //called repeatedly 
-        void draw() { 
-        
-          background(23, 27, 28); 
-
-          createTheList();
-
-          // testBuilding.drawAndUpdate();
-
-        }
-        
-        class Building 
-        {
-          //attributes 
-          var buildingXPos, buildingWidth, buildingHeight;
-
-          //constructor 
-          Building (float buildingX, float buildingW) {
-
-            buildingXPos = buildingX;
-            buildingWidth = buildingW;
-            buildingHeight = random(-300, -100);
-
-          }
-          void drawAndUpdate() {
-            drawBuilding();
-            update();
-
-          }
-
-          void drawBuilding() { 
-
-            strokeWeight(2);
-            fill(255, 255, 255);
-            rect(buildingXPos, 650, buildingWidth, buildingHeight);
-
+            previousBuildingXPosition = 1100;
+            for(var i = 0; i < numberOfBuildings; i++) {
+            buildTheBuildings();
             }
-            
-          void update() {
+      }
+    }
+        
+        class Building {
+          var xPosition, yPosition, buildingHeight, buildingWidth;
+          var buildingColor;
+          Building(var xPos, var bw ) {
+            buildingHeight = random(30,250);
+            buildingWidth = bw;
+            xPosition = xPos;
+            buildingColor = color(90); 
+          }
 
-              buildingXPos += 4;
+          void drawAndUpdate(){
+            var testSpeed = 5;
+        drawBuilding();
+        update(testSpeed);
+      }
 
-        }
-
+          void drawBuilding(){
+                fill(buildingColor);
+            rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
+          }
+          
+          void update(var speed){
+            xPosition += speed;
+          }
+          
         }
         </script> 
     </head>
@@ -105,3 +106,4 @@
     <canvas id="mycanvas"></canvas>
   </body>
 </html>
+ 
