@@ -8,17 +8,46 @@
         // Declare and contruct two objects (h1, h2) from the class HorizontalLine 
         
        
-       Building testBuilding = new Building(0, random(30,100)); 
+       // Building testBuilding = new Building(0, random(120, 180)); 
         
-        
-        var WINDOW_WIDTH = screen.width;
-        var WINDOW_HEIGHT = 400; 
+        var WINDOW_WIDTH = 1100;
+        var WINDOW_HEIGHT = 650; 
+
+        var buildingList = new ArrayList<Skyline>();
+
+        var buildingXPosition;
+        var previousBuildingXPosition;
+        var buildingWidthh;
+
         var GREY = 204;
+
+        void createTheList() {
+            for(var i = 0; i < buildingList.size(); i++) {
+            Building currentBuilding = buildingList.get(i);
+            currentBuilding.drawAndUpdate();
+          }
+        }
+
+        void buildTheBuildings() {
+          buildingWidthh = random(120, 180);
+          buildingXPosition = previousBuildingXPosition - buildingWidthh;
+          buildingList.add(new Building(buildingXPosition, buildingWidthh));
+          previousBuildingXPosition = buildingXPosition;
+        }
+
+
         //runs once at the start of the program 
         void setup() {
+
+        numberOfBuildings = 16;
+        previousBuildingXPosition = 1100;
+        for(var i = 0; i < numberOfBuildings; i++) {
+          buildTheBuildings();
+        }
+
         size(WINDOW_WIDTH, WINDOW_HEIGHT);
         
-         testBuilding.drawAndUpdate();
+         // testBuilding.drawAndUpdate();
 
    
         }
@@ -28,100 +57,44 @@
         void draw() { 
         
           background(23, 27, 28); 
-          
-          testBuilding.drawAndUpdate();
 
-        }
+          createTheList();
 
-          noStroke(); //so you won't see the second ellipse's stroke
-          fill(255, 233, 33);//moon-like color
-          ellipse(200, 100, 200, 200);//the moon
-          fill(23, 27, 28);//same color as the night
-          ellipse(280, 100, 120, 120);//circle that covers the first ellipse to make a crescent shape
+          // testBuilding.drawAndUpdate();
 
-          
-        
-         
-        
-         
-        
-        class Skyline
-         { 
-          
-          //attributes
-          ArrayList<Building>buildingList;
-              var xPos;
-          
-          //constructor
-          Skyline(){
-            buildingList = new ArrayList<Building>()
-            xPos = 0;
-            fillSkyline();
-          }  
-             
-  
-          void moveSkyline(){
-            xPos = xPos +1
-          }
-          void drawSkyline() //loop through Array List and draw each building
-          {
-            for(var i = 0; i < buildingList.size(); i++) {
-              Building currentBuilding = buildingList.get(i); 
-              currentBuilding.drawBuilding();
-            }
-          }
-          void update(){
-            for(var i = 0; i< buildingList.size(); i++) { 
-              Building currentBuilding = buildingList.get(i);
-              currentBuilding.update();
-              var speed = 5
-           }
-
-           }
-          void addBuilding()
-            {
-            var randomBuildingwidth = random(10,80);
-            Building currentBuilding = new Building(xPos, randomBuildingwidth);
-            BuildingList.add(currentBuilding);
-            xPos += randomBuildingwidth;
-            }
-          void fillSkyline();
-          {
-
-
-          }
         }
         
         class Building 
         {
           //attributes 
-          var xPos, centerY, buildingHeight, buildingWidth, buildingColor, currentBuildingwidth);
+          var buildingXPos, buildingWidth, buildingHeight;
+
           //constructor 
-          Building(var xPos,var currentBuildingwidth)
-          {
-            //attributes on the left, parameters on the right
-            buildingHeight = random(200,300);
-            buildingWidth = random(50,100); 
-            buildingColor = color(187, 195, 199); 
-            xPos = 10;
-            centerY = random(500,580) - buildingHeight; 
-            
+          Building (float buildingX, float buildingW) {
+
+            buildingXPos = buildingX;
+            buildingWidth = buildingW;
+            buildingHeight = random(-300, -100);
+
           }
-          void drawAndUpdate(){
-            var testSpeed = 5;
+          void drawAndUpdate() {
             drawBuilding();
-            update(testSpeed);
+            update();
+
           }
-          void drawBuilding()
-          {  
-            noStroke();
-            fill(buildingColor);
-            rect(xPos, centerY + 100, buildingWidth + 10, buildingHeight - 20);
+
+          void drawBuilding() { 
+
+            strokeWeight(2);
+            fill(255, 255, 255);
+            rect(buildingXPos, 650, buildingWidth, buildingHeight);
+
             }
             
-          void update(var speed){
-              xPos += speed;
-        
+          void update() {
+
+              buildingXPos += 4;
+
         }
 
         }
