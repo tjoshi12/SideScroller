@@ -6,7 +6,7 @@
     
     //Building testBuilding = new Building(0, random(30,100));          
     //TODO: Create an instance of your Skyline object 
-        Skyline testSkyline = new Skyline();
+        Skyline testSkyline = new Skyline(6);
         //since these are variables we don't want to ever change in the code, we capitalize them 
         var WINDOW_WIDTH = 1100;
         var WINDOW_HEIGHT = 650; 
@@ -23,21 +23,24 @@
           background(0); //needed in the draw function to "clear" the screen between updates
         //testBuilding.drawAndUpdate();
         //TODO: Call drawSkyline on your Skyline object
+        fill(207, 222, 71);
+        ellipse(200, 130, 150, 150);
         testSkyline.drawSkyline();
         testSkyline.update();
-
-        } 
+        
+        }
 
 
     class Skyline {
       ArrayList<Building> buildingList;
-      var xPosition, xPosition1, xPosition2;
+      var xPosition, xPosition1, xPosition2, speed;
       
-      Skyline(){
+      Skyline(var s){
         buildingList = new ArrayList<Building>();
         xPosition = 0;
         xPosition1 = 0;
         xPosition2 = 0;
+        speed = s;
         fillSkyline();//when a Skyline is created it automatically has enough buildings to fill the screen
       }
       
@@ -50,8 +53,8 @@
         
             for(var i = 0; i < buildingList.size(); i++) {
             Building currentBuilding = buildingList.get(i);
-            currentBuilding.drawBuilding2();
-            currentBuilding.drawBuilding1();
+            //currentBuilding.drawBuilding2();
+            //currentBuilding.drawBuilding1();
             currentBuilding.drawBuilding();
             
           }
@@ -62,12 +65,12 @@
               Building currentBuilding = buildingList.get(i);
                 //currentBuilding.update2();
                 //currentBuilding.update1(); 
-                currentBuilding.update();
+                currentBuilding.update(speed);
          }
-         if (xPosition < buildingWidthh + 50)
-         { 
-          buildTheBuildings();
-         }
+         //if (xPosition < buildingWidthh + 50)
+         //{ 
+         // buildTheBuildings();
+         //}
 
         }
       void buildTheBuildings() {
@@ -113,9 +116,7 @@
       }
           
           void update(var speed){
-            xPosition += 6;
-            xPosition1 += 4;
-            xPosition2 += 2;
+                xPosition += speed;
           }
 
           //void update1(var speed){
@@ -131,15 +132,15 @@
             rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
           }
 
-          void drawBuilding1(){
-              fill(buildingColor1);
-              rect(xPosition1, WINDOW_HEIGHT - buildingHeight1, buildingWidth, buildingHeight1);
-          }
+          //void drawBuilding1(){
+              //fill(buildingColor1);
+              //rect(xPosition1, WINDOW_HEIGHT - buildingHeight1, buildingWidth, buildingHeight1);
+          //}
 
-          void drawBuilding2(){
-            fill(buildingColor2);
-            rect(xPosition2, WINDOW_HEIGHT - buildingHeight2, buildingWidth, buildingHeight2);
-          }
+          //void drawBuilding2(){
+            //fill(buildingColor2);
+            //rect(xPosition2, WINDOW_HEIGHT - buildingHeight2, buildingWidth, buildingHeight2);
+          //}
           
         }
         </script> 
