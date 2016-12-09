@@ -9,7 +9,7 @@
         Skyline testSkyline = new Skyline();
         //since these are variables we don't want to ever change in the code, we capitalize them 
         var WINDOW_WIDTH = 1100;
-        var WINDOW_HEIGHT = 600; 
+        var WINDOW_HEIGHT = 650; 
         var GREY = 204;
     
         //This function only runs once at the start of the program
@@ -53,6 +53,7 @@
             currentBuilding.drawBuilding2();
             currentBuilding.drawBuilding1();
             currentBuilding.drawBuilding();
+            
           }
         }
       void update(){
@@ -63,6 +64,11 @@
                 //currentBuilding.update1(); 
                 currentBuilding.update();
          }
+         if (xPosition < buildingWidthh + 50)
+         { 
+          buildTheBuildings();
+         }
+
         }
       void buildTheBuildings() {
               buildingWidthh = random(120, 180);
@@ -74,7 +80,7 @@
       void fillSkyline(){
         //TODO:add enough buildings to fill the screen
         //Need an if statement here
-        numberOfBuildings = 16;
+        numberOfBuildings = 100;
             previousBuildingXPosition = 1100;
             for(var i = 0; i < numberOfBuildings; i++) {
             buildTheBuildings();
@@ -83,17 +89,21 @@
       }
         
         class Building {
-          var xPosition, xPosition1, xPosition2, yPosition, buildingHeight, buildingWidth, buildingHeight1, buildingHeight2;
+          var xPosition, xPosition1, xPosition2, buildingHeight, buildingWidth, buildingWidth1, buildingWidth2, buildingHeight1, buildingHeight2;
           var buildingColor, buildingColor1, buildingColor2;
           Building(var xPos, var bw) {
             buildingHeight = random(30,250);
             buildingWidth = bw;
+            buildingWidth1 = bw;
+            buildingWith2 = bw;
             buildingHeight1 = random(200, 400);
             buildingHeight2 = random(400, 500);
             xPosition = xPos; 
             buildingColor = color(90); 
             buildingColor1 = color(150);
             buildingColor2 = color(220);
+            xPosition1 = xPos;
+            xPosition2 = xPos;
           }
 
           void drawAndUpdate(){
@@ -103,7 +113,9 @@
       }
           
           void update(var speed){
-            xPosition += 4;
+            xPosition += 6;
+            xPosition1 += 4;
+            xPosition2 += 2;
           }
 
           //void update1(var speed){
@@ -121,12 +133,12 @@
 
           void drawBuilding1(){
               fill(buildingColor1);
-              rect(xPosition, WINDOW_HEIGHT - buildingHeight1, buildingWidth, buildingHeight1);
+              rect(xPosition1, WINDOW_HEIGHT - buildingHeight1, buildingWidth, buildingHeight1);
           }
 
           void drawBuilding2(){
             fill(buildingColor2);
-            rect(xPosition, WINDOW_HEIGHT - buildingHeight2, buildingWidth, buildingHeight2);
+            rect(xPosition2, WINDOW_HEIGHT - buildingHeight2, buildingWidth, buildingHeight2);
           }
           
         }
