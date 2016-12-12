@@ -6,7 +6,12 @@
     
     //Building testBuilding = new Building(0, random(30,100));          
     //TODO: Create an instance of your Skyline object 
-        Skyline testSkyline = new Skyline(6);
+        Skyline testSkyline = new Skyline(6, random(30, 250), color(90));
+        Skyline testSkyline1 = new Skyline(4, random(250, 400), color(120));
+        Skyline testSkyline2 = new Skyline(2, random(400, 500), color(180));
+
+        //Moon testMoon = new Moon(3, color(207, 222, 71));
+
         //since these are variables we don't want to ever change in the code, we capitalize them 
         var WINDOW_WIDTH = 1100;
         var WINDOW_HEIGHT = 650; 
@@ -23,24 +28,72 @@
           background(0); //needed in the draw function to "clear" the screen between updates
         //testBuilding.drawAndUpdate();
         //TODO: Call drawSkyline on your Skyline object
-        fill(207, 222, 71);
-        ellipse(200, 130, 150, 150);
+
+        //testMoon.drawMoon();
+        //testMoon.moveMoon();
+
+        testSkyline2.drawSkyline();
+        testSkyline2.update();
+
+        testSkyline1.drawSkyline();
+        testSkyline1.update();
+
         testSkyline.drawSkyline();
         testSkyline.update();
         
+        
         }
+    //class Moon
+          //{
+            //attributes
+            //var mooncenterX, mooncenter Y, moonHeight, moonWidth, moonColor;
+
+            //constructor
+            //Moon(var sp, var mc)
+            //{
+
+                //attributes on the left, paramters on the right
+                //speed = sp;
+                //moonColor = mc;
+                //mooncenterX = 200;
+                //mooncenterY = 130;
+                //moonHeight = 150;
+                //moonWidth = 150;
+
+            //}
+
+              //void drawMoon()
+            //{
+              //noStroke();
+              //fill(moonColor);
+              //ellipse(mooncenterX, mooncenterY, moonHeight, moonWidth);
+              
+          
+            //}
+          
+            //void moveMoon()
+            //{
+              //mooncenterX = mooncenterX + speed;
+              //if(mooncenterX-moonWidth > width){
+                //mooncenterX = -moonWidth/2;
+              //}
+
+            //}
+          //}
 
 
     class Skyline {
       ArrayList<Building> buildingList;
-      var xPosition, xPosition1, xPosition2, speed;
+      var xPosition, xPosition1, xPosition2, speed, buildingHeight, buildingColor;
       
-      Skyline(var s){
+      Skyline(var s, var bh, var bc){
         buildingList = new ArrayList<Building>();
         xPosition = 0;
         xPosition1 = 0;
         xPosition2 = 0;
         speed = s;
+        buildingHeight = bh;
+        buildingColor = bc;
         fillSkyline();//when a Skyline is created it automatically has enough buildings to fill the screen
       }
       
@@ -67,16 +120,16 @@
                 //currentBuilding.update1(); 
                 currentBuilding.update(speed);
          }
-         //if (xPosition < buildingWidthh + 50)
-         //{ 
-         // buildTheBuildings();
-         //}
+         if (xPosition < buildingWidthh + 50)
+         { 
+          buildTheBuildings();
+         }
 
         }
       void buildTheBuildings() {
               buildingWidthh = random(120, 180);
               buildingXPosition = previousBuildingXPosition - buildingWidthh;
-              buildingList.add(new Building(buildingXPosition, buildingWidthh));
+              buildingList.add(new Building(buildingXPosition, buildingWidthh, buildingHeight, buildingColor));
               previousBuildingXPosition = buildingXPosition;
           }
 
@@ -94,19 +147,21 @@
         class Building {
           var xPosition, xPosition1, xPosition2, buildingHeight, buildingWidth, buildingWidth1, buildingWidth2, buildingHeight1, buildingHeight2;
           var buildingColor, buildingColor1, buildingColor2;
-          Building(var xPos, var bw) {
-            buildingHeight = random(30,250);
+          Building(var xPos, var bw, var bh, var bc) {
+            //buildingHeight = random(30,250);
+            buildingHeight = bh;
             buildingWidth = bw;
-            buildingWidth1 = bw;
-            buildingWith2 = bw;
-            buildingHeight1 = random(200, 400);
-            buildingHeight2 = random(400, 500);
+            //buildingWidth1 = bw;
+            //buildingWidth2 = bw;
+            //buildingHeight1 = random(200, 400);
+            //buildingHeight2 = random(400, 500);
             xPosition = xPos; 
-            buildingColor = color(90); 
-            buildingColor1 = color(150);
-            buildingColor2 = color(220);
-            xPosition1 = xPos;
-            xPosition2 = xPos;
+            //buildingColor = color(90); 
+            buildingColor = bc;
+            //buildingColor1 = color(150);
+            //buildingColor2 = color(220);
+            //xPosition1 = xPos;
+            //xPosition2 = xPos;
           }
 
           void drawAndUpdate(){
