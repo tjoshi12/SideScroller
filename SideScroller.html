@@ -10,7 +10,7 @@
         Skyline testSkyline1 = new Skyline(4, random(250, 400), color(120));
         Skyline testSkyline2 = new Skyline(2, random(400, 500), color(180));
 
-        //Moon testMoon = new Moon(3, color(207, 222, 71));
+        Moon testMoon = new Moon(3, color(207, 222, 71));
 
         //since these are variables we don't want to ever change in the code, we capitalize them 
         var WINDOW_WIDTH = 1100;
@@ -29,8 +29,8 @@
         //testBuilding.drawAndUpdate();
         //TODO: Call drawSkyline on your Skyline object
 
-        //testMoon.drawMoon();
-        //testMoon.moveMoon();
+        testMoon.drawMoon();
+        testMoon.moveMoon();
 
         testSkyline2.drawSkyline();
         testSkyline2.update();
@@ -43,43 +43,43 @@
         
         
         }
-    //class Moon
-          //{
+  class Moon
+          {
             //attributes
-            //var mooncenterX, mooncenter Y, moonHeight, moonWidth, moonColor;
+            var mooncenterX, mooncenterY, moonHeight, moonWidth, moonColor;
 
             //constructor
-            //Moon(var sp, var mc)
-            //{
+            Moon(var sp, var mc)
+            {
 
                 //attributes on the left, paramters on the right
-                //speed = sp;
-                //moonColor = mc;
-                //mooncenterX = 200;
-                //mooncenterY = 130;
-                //moonHeight = 150;
-                //moonWidth = 150;
+                speed = sp;
+                moonColor = mc;
+                mooncenterX = 200;
+                mooncenterY = 130;
+                moonHeight = 150;
+                moonWidth = 150;
 
-            //}
+            }
 
-              //void drawMoon()
-            //{
-              //noStroke();
-              //fill(moonColor);
-              //ellipse(mooncenterX, mooncenterY, moonHeight, moonWidth);
+              void drawMoon()
+            {
+              
+              fill(moonColor);
+              ellipse(mooncenterX, mooncenterY, moonHeight, moonWidth);
               
           
-            //}
+            }
           
-            //void moveMoon()
-            //{
-              //mooncenterX = mooncenterX + speed;
-              //if(mooncenterX-moonWidth > width){
-                //mooncenterX = -moonWidth/2;
-              //}
+            void moveMoon()
+            {
+              mooncenterX = mooncenterX + speed;
+              if(mooncenterX-moonWidth > width){
+                mooncenterX = -moonWidth/2;
+              }
 
-            //}
-          //}
+            }
+          }
 
 
     class Skyline {
