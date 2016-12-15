@@ -182,14 +182,28 @@
             }
             fill(buildingColor);
             rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
+
+            drawWindows();
             
           }
 
           void drawTower(){
 
               fill(buildingColor);
-              triangle(xPosition, WINDOW_HEIGHT - buildingHeight + 1, xPosition + buildingWidth, WINDOW_HEIGHT - buildingHeight + 1, xPosition + buildingWidth/2, 300 - buildingHeight/3);
+              triangle(xPosition, WINDOW_HEIGHT - buildingHeight + 1, xPosition + buildingWidth, WINDOW_HEIGHT - buildingHeight + 1, xPosition + buildingWidth/2, 300 - buildingHeight/2);
             }
+
+          void drawWindows(){
+
+            fill(225, 255, 0);
+            rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/3, 30, 30);
+            if (1100 - buildingHeight < 900){
+              rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/1.5, 30, 30);
+            }
+            if (1100 - buildingHeight < 700){
+              rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/1.1, 30, 30);
+            }
+          }
           
         }
         </script> 
