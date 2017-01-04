@@ -6,7 +6,7 @@
     
     //Building testBuilding = new Building(0, random(30,100));          
     //TODO: Create an instance of your Skyline object 
-        Skyline testSkyline = new Skyline(6, random(30, 250), color(90));
+        Skyline testSkyline = new Skyline(6, random(60, 250), color(90));
         Skyline testSkyline1 = new Skyline(4, random(250, 400), color(120));
         Skyline testSkyline2 = new Skyline(2, random(450, 550), color(180));
         Moon testMoon = new Moon(2.5, color(207, 222, 71));
@@ -39,6 +39,14 @@
 
         testSkyline.drawSkyline();
         testSkyline.update();
+
+        
+        //if(frameCount%20==0)
+        //{
+          //colorChange();
+        //}
+        //}
+
         }
 
   class Moon
@@ -196,12 +204,12 @@
           void drawWindows(){
 
             fill(225, 255, 0);
-            rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/3, 30, 30);
+            rect(xPosition + buildingWidth/2.4, WINDOW_HEIGHT - buildingHeight/3, 30, 30);
             if (1100 - buildingHeight < 900){
-              rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/1.5, 30, 30);
+              rect(xPosition + buildingWidth/2.4, WINDOW_HEIGHT - buildingHeight/1.5, 30, 30);
             }
             if (1100 - buildingHeight < 700){
-              rect(xPosition + buildingWidth/2, WINDOW_HEIGHT - buildingHeight/1.1, 30, 30);
+              rect(xPosition + buildingWidth/2.4, WINDOW_HEIGHT - buildingHeight/1.1, 30, 30);
             }
           }
           
